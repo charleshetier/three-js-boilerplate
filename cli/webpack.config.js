@@ -34,7 +34,7 @@ module.exports = (env, argv) => {
         // Modules definition
         module: {
             rules: [
-                {
+                {   // Typescript files
                     test: /\.ts$/,
                     use: {
                         loader: 'ts-loader',
@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                 },
 
-                {
+                {   // Sass style sheets
                     test: /\.s[ac]ss$/i,
                     use: [
                       // Creates `style` nodes from JS strings
@@ -56,6 +56,16 @@ module.exports = (env, argv) => {
                       "sass-loader",
                     ],
                   },
+
+                  { // glsl shader files
+                    test: /\.(frag|vert|glsl)$/,
+                    use: [
+                      { 
+                        loader: 'glsl-shader-loader',
+                        options: {}  
+                      }
+                    ]
+                  }
             ],
         },
 

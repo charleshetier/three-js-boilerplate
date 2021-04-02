@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
+import vertexShader from './sample-shader.vert';
+import fragmentShader from './sample-shader.frag';
 
 /** The THREE scene */
 const scene = new THREE.Scene();
@@ -17,7 +19,9 @@ document.body.appendChild(renderer.domElement);
 
 // Populating with a default cube
 const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+const material = new THREE.ShaderMaterial({
+    fragmentShader, vertexShader
+})
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
