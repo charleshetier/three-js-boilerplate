@@ -28,7 +28,8 @@ module.exports = (env, argv) => {
         devServer: env.production ? undefined : {
             contentBase: knownPaths.dist,
             hot: true,
-            writeToDisk: true
+            writeToDisk: true,
+            port: 8090
           },
 
         // Modules definition
