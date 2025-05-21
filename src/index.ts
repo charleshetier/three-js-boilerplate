@@ -1,8 +1,8 @@
 import './index.scss';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-// import Stats from 'three/examples/jsm/libs/stats.module';
-// import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
+import {GUI} from 'dat.gui';
 import vertexShader from './sample-shader.vert';
 import fragmentShader from './sample-shader.frag';
 
@@ -33,14 +33,14 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.addEventListener('change', render);
 
 // Adding statistics
-// const stats = Stats();
-// document.body.appendChild(stats.dom);
+const stats = new Stats();
+document.body.appendChild(stats.dom);
 
 // Adding GUI
-// const gui = new GUI()
-// gui.add(cube.position, 'x', -5, 5, 0.01).onChange(render);
-// gui.add(cube.position, 'y', -5, 5, 0.01).onChange(render);
-// gui.add(cube.position, 'z', -5, 5, 0.01).onChange(render);
+const gui = new GUI()
+gui.add(cube.position, 'x', -5, 5, 0.01).onChange(render);
+gui.add(cube.position, 'y', -5, 5, 0.01).onChange(render);
+gui.add(cube.position, 'z', -5, 5, 0.01).onChange(render);
 
 // Camera position
 camera.position.z = 4;
@@ -53,9 +53,9 @@ render();
 
 /** Renders a frame of the scene */
 function render() {
-    // stats.begin();
+    stats.begin();
     renderer.render(scene, camera);
-    // stats.end();
+    stats.end();
 }
 
 // Handling window resize scenario
